@@ -113,7 +113,7 @@ nav ul li a:hover {
 
 /* Section d'accueil */
 .background-section {
-    background: url('image/image2.jpeg') no-repeat center center/cover;
+    background: url('image2.jpeg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -250,80 +250,6 @@ nav ul li a:hover {
     font-size: 1em;
 }
 
-/* Footer */
-footer {
-    background-color: #000000;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    font-size: 1em;
-}
-
-/* Styles généraux pour les images */
-.ac {
-    transition: transform 0.3s ease-in-out;
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.ac:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-/* Chatbot */
-.chatbot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 1000;
-}
-
-.chat-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
-
-.chat-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    height: 200px;
-}
-
-#chatInput {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    flex: 0;
-}
-
-#sendMessage {
-    padding: 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#sendMessage:hover {
-    background-color: #0056b3;
-}
-
 /* Formulaire de Contact */
 .contact-form {
     background-color: #f9f9f9;
@@ -348,6 +274,7 @@ footer {
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
+.contact-form input[type="password"],
 .contact-form textarea {
     padding: 10px;
     border: 1px solid #ccc;
@@ -404,3 +331,44 @@ footer {
     }
 }
 
+/* Pied de page */
+footer {
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 1em;
+}
+
+/* Styles généraux pour les images */
+.ac {
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.ac:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Icônes des réseaux sociaux */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a img {
+    width: 30px; /* Réduit la taille à 30px */
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2); /* Zoom léger au survol */
+}
