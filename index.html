@@ -3,185 +3,284 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale =1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil DiarigneTech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style global de la page */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #fafafa;
+            color: #333;
+        }
+
+        /* En-tête sticky */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header img.imo {
+            height: 50px;
+        }
+
+        header h1 {
+            font-size: 26px;
+            margin-left: 10px;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff6600;
+        }
+
+        /* Bannière motivante */
+        .banner {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+            background-image: url('banner-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner .cta-button {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px 30px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .banner .cta-button:hover {
+            background-color: #e65c00;
+        }
+
+        /* Section principale */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Grille des services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #f4f4f4;
+            padding: 60px 20px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #e65c00;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin: 0;
+        }
+    </style>
 </head>
 
-
 <body>
-    <header>
 
+    <!-- En-tête -->
+    <header>
         <div class="container">
             <img class="imo" src="DT LOGO.jpg" alt="logo-dt">
             <h1>DiarigneTech Sénégal</h1>
             <nav>
                 <ul>
-                    <li><a href="#home"><img  src="accueil.png" alt="accueil"> Accueil</a></li>
-                    <li><a href="#services"><img  src="service.png" alt="services"> Services</a></li>
-                    <li><a href="#about"><img  src="apropos.png" alt=""> À propos</a></li>
-                    <li><a href="#contact"><img  src="contact.png" alt="contact"> Contact</a></li>
-                    <li><a href="xassidacloud.html"><img  src="" alt="contact">XassidaCloud</a></li>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="xassidacloud.html">XassidaCloud</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section id="home" class="background-section">
-        <div class="content-overlay">
-            <h1 class="fade-in">Qui sommes-nous ?</h1>
-            <p class="fade-in">Notre mission est de faciliter la transition vers un monde numérique tout en garantissant
-                la sécurité, la performance, et l'efficacité des systèmes informatiques de nos clients.</p>
-                <button class="button">
-                    <a href="#about" >En savoir plus</a>
-                </button>
-                <button class="button">
-                        <a href="#contact">Nous contacter</a>
-                </button>
-            </div>
+    <!-- Bannière -->
+    <section class="banner">
+        <h2>Transformez vos idées en réalité avec DiarigneTech</h2>
+        <a href="#contact" class="cta-button">Contactez-nous</a>
     </section>
-    <section id="services" class="services-section">
-        <br><br><br>
+
+    <!-- Introduction -->
+    <section id="home" class="section">
+        <h2>À propos de DiarigneTech</h2>
+        <p>Nous révolutionnons l'accès à la technologie en créant des solutions digitales sur mesure pour les entreprises. Notre équipe met à votre disposition son expertise en développement, sécurité, et transformation numérique.</p>
+        <p>Découvrez nos services et comment nous pouvons contribuer à votre succès dans le monde numérique.</p>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
         <h2>Nos Services</h2>
-        <div class="services">
-            <div class="service slide-up">
-                <span class="serv"><h3>Développement de Logiciels Personnalisés</h3></span>
-                <p>Nous créons des applications sur mesure adaptées aux besoins spécifiques de nos clients. 
-                    Que ce soit pour le développement de logiciels de gestion, d'applications mobiles, ou de 
-                    plateformes web, notre équipe utilise les dernières technologies pour garantir des solutions 
-                    performantes et évolutives.</p>
-                    <img class ="ac" src="mbile-dev.jpg" alt="dev web">
-                <div></div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Développement de Logiciels</h3>
+                <p>Création de logiciels sur mesure, adaptés à vos besoins spécifiques, pour une gestion efficace de vos processus métier.</p>
             </div>
-
-            <div class="service slide-up">
-                <span class = "serv"><h3>Cloud Computing</h3></span>
-                <p>Nos solutions de cloud computing permettent aux entreprises de migrer vers le cloud de manière 
-                    sécurisée et efficace. Nous offrons des services d'hébergement, de stockage de données, et de 
-                    gestion des infrastructures cloud pour optimiser la performance et la flexibilité de vos systèmes.</p>
-                    <img class ="ac" src="cloud-compitung.jpg" alt="dev web">
+            <div class="service-card">
+                <h3>Cloud Computing</h3>
+                <p>Migrations vers le cloud, avec des solutions sécurisées et évolutives pour améliorer la flexibilité de votre entreprise.</p>
             </div>
-
-            <div class="service slide-up">
-                <span class="serv"><h3>Conception et Développement de Sites Web</h3></span>
-                <p>Nous créons des sites web attrayants, réactifs et optimisés pour le référencement. 
-                    De la conception initiale à la mise en ligne, nous nous assurons que votre présence en ligne
-                     est à la hauteur de vos attentes.</p>
-                     <img class ="ac" src="dev-web.jpg" alt="dev web">
+            <div class="service-card">
+                <h3>Conception de Sites Web</h3>
+                <p>Développement de sites web réactifs et optimisés pour un impact maximal sur vos visiteurs et une expérience utilisateur parfaite.</p>
             </div>
-
         </div>
     </section>
 
-
-    <section id="services" class="services-section">
-        <div class="services">
-            <div class="service slide-up">
-                <span class="serv"><h3>Maintenance et Support Technique</h3></span>
-                <p>Nous offrons des services de maintenance et de support technique pour garantir la continuité de vos 
-                    opérations. Notre équipe est disponible pour résoudre les problèmes techniques, effectuer 
-                    des mises à jour, et assurer la maintenance préventive de vos systèmes informatiques.</p>
-                    <img class ="ac" src="maintenance.jpeg" alt="dev web">
-            </div>
-
-            <div class="service slide-up">
-                <span class = "serv"><h3>Intégration de Systèmes</h3></span>
-                <p>Nous facilitons l'intégration de divers systèmes informatiques pour créer un environnement 
-                    cohérent et interconnecté. Cela comprend l'intégration de logiciels, de bases de données, et 
-                    de systèmes réseau, permettant une communication fluide.</p>
-                    <img class ="ac" src="integration-systeme.webp" alt="dev web">
-            </div>
-
-            <div class="service slide-up">
-                <span class="serv"><h3>Design Graphic</h3></span>
-                <p>Nous créons des identités visuelles complètes qui reflètent l’essence de votre marque. 
-                    Cela inclut la conception de logos, la sélection de palettes de couleurs, la création 
-                    de typographies personnalisées, et la définition de lignes directrices pour assurer une 
-                    cohérence visuelle sur tous vos supports.</p>
-                    <img class ="ac" src="design-graphic.jpeg" alt="dev web">
-            </div>
-
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <br><br><br>
-        <h2>À Propos</h2>
-        <p>
-            Bienvenue chez Diarigne Tech Senegal, votre partenaire de confiance pour tous vos besoins en services
-            informatiques.
-            Nous sommes spécialisés dans la fourniture de solutions innovantes et personnalisées pour aider nos clients
-            à
-            atteindre leurs objectifs technologiques. Forts de plusieurs années d'expérience, nous mettons à votre
-            disposition
-            une expertise pointue en développement web, en sécurité informatique, en support technique, concetion et
-            design graphique etc.
-            Notre mission est de vous offrir un service de qualité supérieure, adapté à vos exigences, pour vous
-            permettre
-            de vous concentrer sur ce qui compte le plus pour vous.
-        </p>
-        <p>
-            Chez DiarigneTech, nous croyons en l'importance de l'innovation, de l'intégrité et de l'engagement envers
-            nos clients. Nous travaillons main dans la main avec vous pour comprendre vos défis et vous proposer des
-            solutions
-            qui dépassent vos attentes. Votre succès est notre priorité, et nous nous efforçons de créer des relations
-            durables
-            basées sur la confiance et la satisfaction.
-        </p>
-    </section>
-
+    <!-- Contact -->
     <section id="contact" class="contact-section">
-        <div class="contact-header"><br>
-            <h2>Contactez-nous !</h2>
-            <p>Vous avez besoin de plus d'informations ? <br> Que ce soit pour un devis ou autre, n'hésitez pas à nous contacter.</p>
-            
-        </div>
-        <div class="contact-details">
-            <div class="contact-item">
-                <h3>Téléphone</h3>
-                <p>+221 76 012 40 78 / +221 77 463 08 56</p>
-            </div>
-            <div class="contact-item">
-                <h3>Adresse</h3>
-                <p>Darou Khoudoss, Thies / Senegal</p>
-            </div>
-            <div class="contact-item">
-                <h3>Suivez-nous sur : </h3>
-                <div class="social-icons">
-                    <a href="#"><img src="whatsapp.png" alt="WhatsApp"></a>
-                    <a href="#"><img src="facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="instagram.png" alt="Instagram"></a>
-                    <a href="https://x.com/diarignetech?s=09"><img src="twitter.png" alt="Twitter"></a>
-                    <a href="#"><img src="linkedin.png" alt="Linkedin"></a>
-                    <a href="https://youtu.be/A-qH4d0xMvg?si=tM6g-nKyfgqFcF9A"><img src="youtube.png" alt="Youtube"></a>
-                </div>
-            </div>
-        </div>
-
+        <h2>Contactez-nous</h2>
         <div class="contact-form">
-            <h3>Formulaire de Contact</h3>
             <form action="#" method="post">
                 <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" required placeholder="Veuillez saisir votre nom">
-            
+                <input type="text" id="name" name="name" required placeholder="Votre nom">
                 <label for="email">E-mail :</label>
-                <input type="email" id="email" name="email" required placeholder="Veuillez saisir votre e-mail">
-            
+                <input type="email" id="email" name="email" required placeholder="Votre e-mail">
                 <label for="message">Message :</label>
-                <textarea id="message" name="message" rows="4" required placeholder="Veuillez saisir votre message"></textarea>
-            
+                <textarea id="message" name="message" rows="4" required placeholder="Votre message"></textarea>
                 <button type="submit">Envoyer</button>
             </form>
-            
         </div>
     </section>
 
-
-    
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; Octobre 2024 DiarigneTech Senegal. Tous droits réservés.</p>
+        <p>&copy; 2024 DiarigneTech Sénégal. Tous droits réservés.</p>
     </footer>
+
 </body>
 
-</html>                             
+</html>
