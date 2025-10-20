@@ -883,7 +883,25 @@
 
         /* helpers */
         function esc(s = '') {return String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));}
-        function toPreview(url) {if (!url) return ''; return url.replace(/\/view.*$/, '/preview');}
+        function toPreview(url) {
+            if (!url) return '';
+            try {
+                // extraire l'ID du fichier Google Drive
+                const match = url.match(/\/file\/d\/([^\/]+)\//);
+                if (match && match[1]) {
+                    const id = match[1];
+                    const direct = `https://drive.google.com/uc?export=download&id=${id}`;
+                    // utiliser Google Docs Viewer
+                    return `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(direct)}`;
+                }
+                // fallback: si pas d'ID trouvé, utiliser le lien brut
+                return `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(url)}`;
+            } catch (err) {
+                console.error('Erreur création preview:', err);
+                return url;
+            }
+        }
+
         function driveIdFromUrl(url) {const m = url.match(/\/file\/d\/([^\/]+)\//); return m ? m[1] : null;}
 
         /* pagination */
