@@ -47,12 +47,14 @@
 
         html,
         body {
-            height: 100%;
-            margin: 0;
             font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+            color: #e6eef8;
+            background: #0b1120;
+            /* 🔸 fond sombre uniforme, sans bande */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+
 
         body {
             color: var(--text-light);
@@ -626,6 +628,36 @@
             }
 
 
+
+        }
+
+        /* 🔶 Style du bouton "Regarder" */
+
+        /* 🔶 Bouton "Regarder" — version forcée et ultra-arrondie */
+        .btn-watch {
+            background-color: #ea580c !important;
+            /* orange foncé */
+            color: #000 !important;
+            /* texte noir */
+            border-radius: 9999px !important;
+            /* arrondi maximal */
+            padding: 10px 20px !important;
+            /* un peu plus large */
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        /* 🌙 Mode sombre */
+        .dark .btn-watch {
+            background-color: #f59e0b !important;
+            /* doré plus doux */
+            color: #fff !important;
+        }
+
+        /* ✨ Effet au survol */
+        .btn-watch:hover {
+            opacity: 0.9 !important;
+            transform: scale(1.05) !important;
         }
     </style>
 </head>
