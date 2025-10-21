@@ -699,41 +699,8 @@
             }
         }
 
-        /* 📱 Amélioration du rendu mobile */
+        /* 📱 Corrige les marges latérales inégales sur mobile */
         @media (max-width: 640px) {
-
-            /* 2 colonnes sur mobile */
-            #gridXassida,
-            #gridLivres,
-            #gridVideos {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                /* 🔹 deux colonnes fixes */
-                gap: 0.8rem;
-                /* 🔹 espace réduit */
-                padding: 0 0.4rem;
-                /* 🔹 léger padding latéral */
-            }
-
-            /* 🔸 Boutons plus petits et compacts */
-            .btn-read,
-            .btn-dl,
-            .btn-watch {
-                font-size: 0.72rem !important;
-                /* 🔹 police réduite */
-                padding: 4px 8px !important;
-                /* 🔹 padding minimal */
-                border-radius: 6px !important;
-                /* 🔹 coins doux */
-                font-weight: 600 !important;
-                line-height: 1 !important;
-            }
-
-            /* Évite que les boutons se serrent trop */
-            .flex.gap-2 {
-                gap: 0.4rem !important;
-            }
-
             section.page {
                 margin-top: 0.5rem !important;
                 margin-bottom: 0.5rem !important;
@@ -743,6 +710,22 @@
                 /* 🔹 marge uniforme */
                 padding-right: 0.4rem !important;
                 /* 🔹 marge uniforme */
+            }
+
+            /* Grille parfaitement centrée avec bords égaux */
+            #gridXassida,
+            #gridLivres,
+            #gridVideos {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+                padding: 0 !important;
+                /* 🚫 retire tout padding interne */
+                margin: 0 auto !important;
+                /* ✅ centre la grille */
+                width: calc(100% - 0.8rem);
+                /* égalise les bords gauche/droite */
+                box-sizing: border-box;
             }
         }
     </style>
