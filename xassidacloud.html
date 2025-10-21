@@ -745,6 +745,52 @@
                 /* 🔹 marge uniforme */
             }
         }
+
+        /* 🧩 Corrige le débordement horizontal sur mobile */
+        html,
+        body {
+            overflow-x: hidden !important;
+            /* empêche le scroll latéral */
+            width: 100%;
+        }
+
+        /* 📱 Correction spéciale pour la grille sur mobile */
+        @media (max-width: 640px) {
+
+            #gridXassida,
+            #gridLivres,
+            #gridVideos {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                /* ✅ 2 colonnes fixes */
+                gap: 0.7rem;
+                width: 100%;
+                margin: 0 auto;
+                padding: 0 0.4rem;
+                /* bords égaux */
+                box-sizing: border-box;
+            }
+
+            /* Boutons plus petits */
+            .btn-read,
+            .btn-dl {
+                font-size: 0.75rem !important;
+                padding: 4px 10px !important;
+                /* 🔹 padding réduit */
+            }
+
+            /* Cartes plus compactes */
+            #gridXassida article,
+            #gridLivres article,
+            #gridVideos article {
+                padding: 0.6rem !important;
+            }
+
+            section.page {
+                margin: 0.4rem auto !important;
+                padding: 0.4rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -1292,4 +1338,5 @@
 
     </script>
 </body>
+
 </html>
