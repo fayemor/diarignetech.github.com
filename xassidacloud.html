@@ -699,64 +699,84 @@
             }
         }
 
-        /* ✅ Version mobile finale — stable et équilibrée sur tous les écrans */
+        /* 📱 Amélioration du rendu mobile */
         @media (max-width: 640px) {
 
-            /* 2 colonnes parfaitement ajustées */
+            /* 2 colonnes sur mobile */
             #gridXassida,
             #gridLivres,
             #gridVideos {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                /* 🔹 deux colonnes fixes */
                 gap: 0.8rem;
+                /* 🔹 espace réduit */
                 padding: 0 0.4rem;
-                margin: 0 auto;
-                width: 100%;
-                box-sizing: border-box;
+                /* 🔹 léger padding latéral */
             }
 
-            /* Cartes plus compactes */
-            #gridXassida article,
-            #gridLivres article,
-            #gridVideos article {
-                padding: 0.5rem !important;
-                border-radius: 10px !important;
-            }
-
-            /* Réduction des tailles de texte */
-            #gridXassida h3,
-            #gridLivres h3,
-            #gridVideos h3 {
-                font-size: 0.85rem !important;
-            }
-
-            #gridXassida p,
-            #gridLivres p,
-            #gridVideos p {
-                font-size: 0.7rem !important;
-            }
-
-            /* Zone des initiales (AB, JQ, etc.) */
-            #gridXassida .h-32,
-            #gridLivres .h-32,
-            #gridVideos .h-32 {
-                height: 4.8rem !important;
-                font-size: 1.3rem !important;
-            }
-
-            /* Boutons ajustés et lisibles */
+            /* 🔸 Boutons plus petits et compacts */
             .btn-read,
             .btn-dl,
             .btn-watch {
-                font-size: 0.7rem !important;
+                font-size: 0.72rem !important;
+                /* 🔹 police réduite */
                 padding: 4px 8px !important;
+                /* 🔹 padding minimal */
                 border-radius: 6px !important;
+                /* 🔹 coins doux */
+                font-weight: 600 !important;
+                line-height: 1 !important;
             }
 
-            /* Espacement général réduit */
+            /* Évite que les boutons se serrent trop */
+            .flex.gap-2 {
+                gap: 0.4rem !important;
+            }
+
             section.page {
-                margin: 0.5rem auto !important;
-                padding: 0.5rem !important;
+                margin-top: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+                padding-left: 0.4rem !important;
+                /* 🔹 marge uniforme */
+                padding-right: 0.4rem !important;
+                /* 🔹 marge uniforme */
+            }
+        }
+
+        /* === ✅ Taille des boutons ajustée === */
+
+        /* Boutons "Lire" et "Télécharger" — taille normale, lisible */
+        .btn-read,
+        .btn-dl {
+            font-size: 0.85rem !important;
+            padding: 6px 14px !important;
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+        }
+
+        /* Bouton "Regarder" (dans vidéos) — légèrement plus petit */
+        .btn-watch {
+            font-size: 0.75rem !important;
+            padding: 4px 10px !important;
+            border-radius: 9999px !important;
+            font-weight: 600 !important;
+        }
+
+        /* 📱 Mobile — garder une bonne proportion sans écraser */
+        @media (max-width: 640px) {
+
+            .btn-read,
+            .btn-dl {
+                font-size: 0.8rem !important;
+                padding: 5px 10px !important;
+            }
+
+            .btn-watch {
+                font-size: 0.7rem !important;
+                padding: 3px 9px !important;
             }
         }
     </style>
