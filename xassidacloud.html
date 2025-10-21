@@ -614,19 +614,6 @@
                 cursor: pointer;
             }
 
-            /* Cache le bouton menu sur desktop (force Tailwind si conflit) */
-            @media (min-width: 768px) {
-                #mobileMenuBtn {
-                    display: none !important;
-                }
-            }
-
-            @media (min-width:768px) {
-                #mobileMenuBtn {
-                    display: none !important
-                }
-            }
-
 
 
         }
@@ -659,13 +646,113 @@
             opacity: 0.9 !important;
             transform: scale(1.05) !important;
         }
+
+        @media (max-width: 640px) {
+            header .max-w-6xl {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            #searchWrap {
+                width: 100%;
+                order: 3;
+                /* la recherche passe sous le logo */
+                margin-top: 0.5rem;
+            }
+
+            #btnSearch {
+                flex: 1;
+            }
+
+            #mobileMenuBtn,
+            #themeToggle {
+                flex-shrink: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #page-home {
+                margin-top: 5.5rem !important;
+                /* décale la section d’accueil sous le header */
+            }
+        }
+
+        /* 📱 Ajustement des boutons sur mobile */
+        @media (max-width: 640px) {
+
+            .btn-read,
+            .btn-dl,
+            .btn-watch {
+                font-size: 0.78rem !important;
+                /* 🔹 réduit légèrement le texte */
+                padding: 6px 10px !important;
+                /* 🔹 moins large */
+                border-radius: 10px !important;
+                /* 🔹 toujours arrondi */
+            }
+        }
+
+        /* 💻 Cache le bouton menu sur desktop (fonctionne à coup sûr) */
+        @media (min-width: 768px) {
+            #mobileMenuBtn {
+                display: none !important;
+            }
+        }
+
+        /* 📱 Amélioration du rendu mobile */
+        @media (max-width: 640px) {
+
+            /* 2 colonnes sur mobile */
+            #gridXassida,
+            #gridLivres,
+            #gridVideos {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                /* 🔹 deux colonnes fixes */
+                gap: 0.8rem;
+                /* 🔹 espace réduit */
+                padding: 0 0.4rem;
+                /* 🔹 léger padding latéral */
+            }
+
+            /* 🔸 Boutons plus petits et compacts */
+            .btn-read,
+            .btn-dl,
+            .btn-watch {
+                font-size: 0.72rem !important;
+                /* 🔹 police réduite */
+                padding: 4px 8px !important;
+                /* 🔹 padding minimal */
+                border-radius: 6px !important;
+                /* 🔹 coins doux */
+                font-weight: 600 !important;
+                line-height: 1 !important;
+            }
+
+            /* Évite que les boutons se serrent trop */
+            .flex.gap-2 {
+                gap: 0.4rem !important;
+            }
+
+            section.page {
+                margin-top: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+                padding-left: 0.4rem !important;
+                /* 🔹 marge uniforme */
+                padding-right: 0.4rem !important;
+                /* 🔹 marge uniforme */
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+
 
             <!-- Logo -->
             <div class="flex items-center gap-3">
@@ -966,8 +1053,17 @@
         const htmlEl = document.documentElement;
         const themeToggle = document.getElementById('themeToggle');
         function applyTheme(t) {
-            if (t === 'light') {htmlEl.classList.add('light'); localStorage.setItem('theme', 'light');}
-            else {htmlEl.classList.remove('light'); localStorage.setItem('theme', 'dark');}
+            if (t === 'light') {
+                htmlEl.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.innerHTML = `<path d="M12 4.5V2m0 20v-2.5M4.5 12H2m20 0h-2.5M5.64 5.64l-1.77-1.77m15.26 15.26l-1.77-1.77M18.36 5.64l1.77-1.77M5.64 18.36l-1.77 1.77M12 6.5a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11z" />`;
+                // ☀️ Soleil (mode clair)
+            } else {
+                htmlEl.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1111.21 3A7 7 0 0021 12.79z" />`;
+                // 🌙 Lune (mode sombre)
+            }
         }
         applyTheme(localStorage.getItem('theme') || 'dark');
         themeToggle.addEventListener('click', () => applyTheme(htmlEl.classList.contains('light') ? 'dark' : 'light'));
