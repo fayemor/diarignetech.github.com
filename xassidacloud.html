@@ -781,6 +781,42 @@
                 padding: 3px 9px !important;
             }
         }
+
+        footer {
+
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-radius: 25px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-light);
+            text-align: center;
+            padding: 0.0001rem 0;
+            /* 🔸 réduit la hauteur (au lieu de 0.8rem) */
+            font-size: 0.02rem;
+            /* 🔸 texte un peu plus petit */
+            z-index: 10;
+            opacity: 0;
+            /* invisible par défaut */
+            transform: translateY(10px);
+            /* léger décalage vers le bas */
+            transition: all 0.8s ease;
+        }
+
+        footer.visible {
+            opacity: 1;
+            /* devient visible */
+            transform: translateY(0);
+            /* revient en place */
+        }
+
+        html.light footer {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
     </style>
 </head>
 
@@ -1328,6 +1364,21 @@
         if (['home', 'xassidas', 'livres', 'videos'].includes(initial)) showPage(initial); else showPage('home');
 
     </script>
+
+    <script>
+        // 🎬 Affiche le footer avec un effet de fondu quand il entre dans la vue
+        const footer = document.querySelector('footer');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) footer.classList.add('visible');
+                else footer.classList.remove('visible');
+            });
+        }, {threshold: 0.1});
+
+        observer.observe(footer);
+    </script>
+
+
 </body>
 
 </html>
