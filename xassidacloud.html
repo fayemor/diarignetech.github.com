@@ -756,14 +756,16 @@
         .btn-read,
         .btn-dl,
         .btn-watch {
-            border-radius: 9999px !important;
-            /* arrondi maximum type pilule */
-            padding: 6px 18px !important;
-            /* équilibre horizontal/vertical */
-            font-weight: 600 !important;
-            font-size: 0.9rem !important;
+            background-color: #b45309 !important;
+            /* orange foncé */
             color: #ffffff !important;
-            transition: all 0.25s ease-in-out !important;
+            /* texte blanc */
+            border: 1px solid #92400e !important;
+            /* contour assorti */
+            border-radius: 9999px !important;
+            padding: 6px 18px !important;
+            font-weight: 600;
+            transition: all 0.25s ease-in-out;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
         }
 
@@ -861,8 +863,86 @@
             color: #0f172a;
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
+
+        /* === Splash Screen Animation === */
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, #b45309 15%, #0b1120 80%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease forwards;
+            animation-delay: 2.8s;
+            /* ⏱ durée avant disparition */
+        }
+
+        .splash-logo {
+            width: min(60vw, 350px);
+            height: auto;
+            object-fit: contain;
+            animation: floatLogo 3s ease-in-out infinite;
+        }
+
+        #splashScreen {
+            gap: 1.5rem;
+        }
+
+
+        .splash-text {
+            margin-top: 1rem;
+            font-size: 1.6rem;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            opacity: 0;
+            animation: fadeInText 2s ease forwards 0.6s;
+        }
+
+        /* Animations */
+        @keyframes floatLogo {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
     </style>
 </head>
+
+<!-- Splash Screen -->
+<div id="splashScreen">
+    <img src="xc-logo.png" alt="Xassida Cloud" class="splash-logo">
+    <h1 class="splash-text">Xassida Cloud</h1>
+</div>
+
+
 
 <body>
     <!-- Header -->
@@ -1420,6 +1500,20 @@
         }, {threshold: 0.1});
 
         observer.observe(footer);
+    </script>
+
+
+    <script>
+        // 🔸 Splash screen timing control
+        document.addEventListener('DOMContentLoaded', () => {
+            const splash = document.getElementById('splashScreen');
+            // Empêche le scroll pendant l’intro
+            document.documentElement.style.overflow = 'hidden';
+            setTimeout(() => {
+                splash.style.display = 'none';
+                document.documentElement.style.overflow = ''; // restore scroll
+            }, 3500); // ⏱ durée totale avant affichage du site
+        });
     </script>
 
 
