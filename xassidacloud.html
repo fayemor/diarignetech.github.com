@@ -951,6 +951,32 @@
         #splashScreen {
             gap: 1rem;
         }
+
+        /* ✅ Animation douce du header quand il disparaît */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            transition: transform 0.6s ease, opacity 0.4s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 🔹 Cache tout bouton X en haut à droite des modales */
+        .modal-inner .modal-close,
+        button[aria-label="Close"],
+        button[title="Fermer"],
+        button.close-modal {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
     </style>
 </head>
 
@@ -1551,6 +1577,43 @@
         });
     </script>
 
+    <script>
+        // Cible ton header
+        const header = document.querySelector("header");
+
+        // Fonction pour cacher la barre
+        function hideHeader() {
+            header.classList.add("hidden");
+        }
+
+        // Fonction pour réafficher la barre
+        function showHeader() {
+            header.classList.remove("hidden");
+        }
+
+        // Exemple : simulation quand tu entres/sors du mode lecture
+        // 👉 tu remplaceras ces deux lignes par ton vrai code plus tard
+        const lireBtns = document.querySelectorAll(".btn-read");
+        const closeBtns = document.querySelectorAll(".modal-bottom-close");
+
+        lireBtns.forEach(btn => btn.addEventListener("click", () => {
+            hideHeader(); // Cache la barre quand on lit
+        }));
+
+        closeBtns.forEach(btn => btn.addEventListener("click", () => {
+            showHeader(); // Réaffiche quand on ferme
+        }));
+    </script>
+
+    <script>
+        // Supprime le bouton X du haut dès que la modale s'ouvre
+        const observer = new MutationObserver(() => {
+            document.querySelectorAll('.modal-close, button[aria-label="Close"], button[title="Fermer"], button.close-modal')
+                .forEach(btn => btn.remove());
+        });
+
+        observer.observe(document.body, {childList: true, subtree: true});
+    </script>
 
 
 </body>
