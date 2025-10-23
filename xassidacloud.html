@@ -864,7 +864,7 @@
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        /* === Splash Screen Animation === */
+        /* === Splash Screen avec effet ZOOM + écriture === */
         #splashScreen {
             position: fixed;
             inset: 0;
@@ -875,55 +875,69 @@
             justify-content: center;
             z-index: 9999;
             animation: fadeOut 1s ease forwards;
-            animation-delay: 2.8s;
-            /* ⏱ durée avant disparition */
+            animation-delay: 3.6s;
+            /* attend la fin de l’animation avant disparition */
         }
 
         .splash-logo {
-            width: min(60vw, 350px);
-            height: auto;
+            width: 300px;
+            height: 300px;
             object-fit: contain;
-            animation: floatLogo 3s ease-in-out infinite;
+            opacity: 0;
+            transform: scale(0.7);
+            animation: zoomIn 2s ease forwards;
         }
 
-        #splashScreen {
-            gap: 1.5rem;
-        }
-
-
+        /* Texte typewriter */
         .splash-text {
-            margin-top: 1rem;
-            font-size: 1.6rem;
+            margin-top: 1.2rem;
+            font-size: 1.9rem;
             color: #fff;
             font-weight: 700;
             letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #fff;
+            /* curseur */
+            width: 0;
             opacity: 0;
-            animation: fadeInText 2s ease forwards 0.6s;
+            animation: typing 2s steps(14, end) forwards 1.4s, blink 0.7s step-end infinite 3.4s;
         }
 
-        /* Animations */
-        @keyframes floatLogo {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes fadeInText {
-            from {
+        /* === Animations === */
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.7);
                 opacity: 0;
-                transform: translateY(10px);
+            }
+
+            60% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+                opacity: 1;
             }
 
             to {
+                width: 13ch;
+                /* nombre de caractères de "Xassida Cloud" */
                 opacity: 1;
-                transform: translateY(0);
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
             }
         }
 
@@ -932,6 +946,10 @@
                 opacity: 0;
                 visibility: hidden;
             }
+        }
+
+        #splashScreen {
+            gap: 1rem;
         }
     </style>
 </head>
@@ -1504,17 +1522,35 @@
 
 
     <script>
-        // 🔸 Splash screen timing control
         document.addEventListener('DOMContentLoaded', () => {
             const splash = document.getElementById('splashScreen');
-            // Empêche le scroll pendant l’intro
-            document.documentElement.style.overflow = 'hidden';
+            const text = document.getElementById('splashText');
+            const phrase = "Xassida Cloud";
+
+            // Écrit le texte lettre par lettre
+            let i = 0;
+            const typeEffect = () => {
+                if (i < phrase.length) {
+                    text.textContent += phrase.charAt(i);
+                    i++;
+                    setTimeout(typeEffect, 120); // vitesse de frappe
+                }
+            };
+
+            // Lance l’animation après le zoom du logo
+            setTimeout(() => {
+                text.style.opacity = "1";
+                typeEffect();
+            }, 1000);
+
+            // Supprime le splash après 4 secondes
             setTimeout(() => {
                 splash.style.display = 'none';
-                document.documentElement.style.overflow = ''; // restore scroll
-            }, 3500); // ⏱ durée totale avant affichage du site
+                document.documentElement.style.overflow = '';
+            }, 4200);
         });
     </script>
+
 
 
 </body>
