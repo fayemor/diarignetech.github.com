@@ -977,13 +977,28 @@
             opacity: 0 !important;
             visibility: hidden !important;
         }
+
+        /* ✅ Animation douce du header quand il disparaît ou revient */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            transition: transform 0.6s ease-in-out, opacity 0.4s ease-in-out;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 
 <!-- Splash Screen -->
 <div id="splashScreen">
     <img src="xc-logo.png" alt="Xassida Cloud" class="splash-logo">
-    <h1 class="splash-text">Xassida Cloud</h1>
 </div>
 
 
@@ -1533,49 +1548,33 @@
 
     </script>
 
-    <script>
-        // 🎬 Affiche le footer avec un effet de fondu quand il entre dans la vue
-        const footer = document.querySelector('footer');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) footer.classList.add('visible');
-                else footer.classList.remove('visible');
-            });
-        }, {threshold: 0.1});
-
-        observer.observe(footer);
-    </script>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const splash = document.getElementById('splashScreen');
-            const text = document.getElementById('splashText');
-            const phrase = "Xassida Cloud";
+            const logo = document.getElementById('splashLogo');
 
-            // Écrit le texte lettre par lettre
-            let i = 0;
-            const typeEffect = () => {
-                if (i < phrase.length) {
-                    text.textContent += phrase.charAt(i);
-                    i++;
-                    setTimeout(typeEffect, 120); // vitesse de frappe
-                }
-            };
+            // Effet de zoom sur le logo
+            logo.style.transition = "transform 1.2s ease, opacity 1.2s ease";
+            logo.style.transform = "scale(0.8)";
+            logo.style.opacity = "0";
 
-            // Lance l’animation après le zoom du logo
+            // Lance l’animation après un court délai
             setTimeout(() => {
-                text.style.opacity = "1";
-                typeEffect();
-            }, 1000);
+                logo.style.transform = "scale(1.2)";
+                logo.style.opacity = "1";
+            }, 200);
 
-            // Supprime le splash après 4 secondes
+            // Fait disparaître l’écran de chargement après 3,5 secondes
             setTimeout(() => {
-                splash.style.display = 'none';
+                splash.style.opacity = "0";
+                splash.style.transition = "opacity 0.8s ease";
+                setTimeout(() => splash.style.display = "none", 800);
                 document.documentElement.style.overflow = '';
-            }, 4200);
+            }, 3500);
         });
     </script>
+
 
     <script>
         // Cible ton header
