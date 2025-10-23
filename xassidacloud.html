@@ -53,6 +53,7 @@
             /* 🔸 fond sombre uniforme, sans bande */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+
         }
 
 
@@ -62,6 +63,7 @@
                 radial-gradient(1200px 600px at 10% 10%, rgba(234, 88, 12, 0.02), transparent 10%),
                 linear-gradient(180deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 100%);
             background-attachment: fixed;
+            padding-bottom: 40px;
 
         }
 
@@ -750,72 +752,114 @@
 
         /* === ✅ Taille des boutons ajustée === */
 
-        /* Boutons "Lire" et "Télécharger" — taille normale, lisible */
+        /* ✅ Style uniforme pour tous les boutons (Lire, Télécharger, Regarder) */
         .btn-read,
-        .btn-dl {
-            font-size: 0.85rem !important;
-            padding: 6px 14px !important;
-            border-radius: 6px !important;
-            font-weight: 600 !important;
-        }
-
-        /* Bouton "Regarder" (dans vidéos) — légèrement plus petit */
+        .btn-dl,
         .btn-watch {
-            font-size: 0.75rem !important;
-            padding: 4px 10px !important;
             border-radius: 9999px !important;
+            /* arrondi maximum type pilule */
+            padding: 6px 18px !important;
+            /* équilibre horizontal/vertical */
             font-weight: 600 !important;
+            font-size: 0.9rem !important;
+            color: #ffffff !important;
+            transition: all 0.25s ease-in-out !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
         }
 
-        /* 📱 Mobile — garder une bonne proportion sans écraser */
+        /* 🔸 Mode clair — cohérence visuelle */
+        html.light .btn-read,
+        html.light .btn-watch {
+            background-color: #b45309 !important;
+            /* orange foncé */
+            color: #ffffff !important;
+            border: 1px solid #92400e !important;
+        }
+
+        html.light .btn-read:hover,
+        html.light .btn-watch:hover {
+            background-color: #92400e !important;
+        }
+
+        html.light .btn-dl {
+            background-color: #e5e7eb !important;
+            /* gris clair */
+            color: #000000 !important;
+            border: 1px solid #d1d5db !important;
+        }
+
+        html.light .btn-dl:hover {
+            background-color: #d1d5db !important;
+        }
+
+        /* 🌙 Mode sombre — même look */
+        html.dark .btn-read,
+        html.dark .btn-watch {
+            background-color: #ea580c !important;
+            /* orange vif */
+            color: #000000 !important;
+            border: 1px solid #fb923c !important;
+        }
+
+        html.dark .btn-read:hover,
+        html.dark .btn-watch:hover {
+            background-color: #c05e0e !important;
+        }
+
+        html.dark .btn-dl {
+            background-color: #1e293b !important;
+            /* gris bleu foncé */
+            color: #ffffff !important;
+            border: 1px solid #334155 !important;
+        }
+
+        html.dark .btn-dl:hover {
+            background-color: #334155 !important;
+        }
+
+        /* 📱 Version mobile : un peu plus compacte */
         @media (max-width: 640px) {
 
             .btn-read,
-            .btn-dl {
-                font-size: 0.8rem !important;
-                padding: 5px 10px !important;
-            }
-
+            .btn-dl,
             .btn-watch {
-                font-size: 0.7rem !important;
-                padding: 3px 9px !important;
+                padding: 5px 14px !important;
+                font-size: 0.85rem !important;
             }
         }
 
-        footer {
 
+        footer {
             bottom: 0;
             left: 0;
             width: 100%;
-            border-radius: 25px;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(6px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-light);
+            height: 22px;
+            /* ← Épaisseur encore plus fine */
+            background: rgba(10, 15, 30, 0.92);
+            color: #cbd5e1;
+            font-size: 0.2rem;
+            /* police légèrement plus petite */
             text-align: center;
-            padding: 0.0001rem 0;
-            /* 🔸 réduit la hauteur (au lieu de 0.8rem) */
-            font-size: 0.02rem;
-            /* 🔸 texte un peu plus petit */
-            z-index: 10;
-            opacity: 0;
-            /* invisible par défaut */
-            transform: translateY(10px);
-            /* léger décalage vers le bas */
-            transition: all 0.8s ease;
+            display: flex;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            z-index: 100;
+            backdrop-filter: blur(5px);
         }
 
-        footer.visible {
-            opacity: 1;
-            /* devient visible */
-            transform: translateY(0);
-            /* revient en place */
+        footer p {
+            margin: 0;
+            padding: 0;
+            line-height: 0.2;
         }
 
+        /* Mode clair */
         html.light footer {
             background: rgba(255, 255, 255, 0.9);
-            color: var(--text-dark);
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            color: #0f172a;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
