@@ -993,6 +993,27 @@
             opacity: 0;
             pointer-events: none;
         }
+
+        #customAlert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(20, 20, 30, 0.9);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            text-align: center;
+            z-index: 9999;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        #customAlert.show {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -1239,11 +1260,30 @@
         ];
 
         const VIDEOS = [
-            {id: 'v1', title: 'La sagesse dans la tradition', speaker: 'Prof. Karim', tag: 'Conférence', youtubeId: 'dQw4w9WgXcQ'},
-            {id: 'v2', title: 'Récitation Tafsir', speaker: 'Qari Salim', tag: 'Vidéos', youtubeId: '3JZ_D3ELwOQ'},
-            {id: 'v3', title: 'Conférence: Transmission', speaker: 'Dr. A. Ndiaye', tag: 'Conférence', youtubeId: 'PLACEHOLDER_YT_1'},
-            {id: 'v4', title: 'Cours: Introduction', speaker: 'Serigne X', tag: 'Vidéos', youtubeId: 'PLACEHOLDER_YT_2'}
+            {
+                id: 'v1',
+                title: 'Khassida 1 - Lecture vidéo',
+                speaker: 'Cheikh Ahmadou Bamba',
+                tag: 'Xassida',
+                link: 'https://drive.google.com/file/d/1av83_-wXu4s68oNVFx5r9nkyHFqS3GIr/preview'
+            },
+            {
+                id: 'v2',
+                title: 'Khassida 2 - Version YouTube',
+                speaker: 'Kourel MN Thies',
+                tag: 'Conférence',
+                link: 'https://youtu.be/iUt3j3beMiQ?si=fXILPgYCMZk2LIIe/preview'
+            },
+            {
+                id: 'v3',
+                title: 'Khassida 3 - Drive direct',
+                speaker: 'Serigne Fallou',
+                tag: 'Xassida',
+                link: 'https://drive.google.com/file/d/1ZxYvQ98LMNOPQRST/preview'
+            }
         ];
+
+
 
         /* ======================
            Internal registry (no visible IDs)
@@ -1458,11 +1498,68 @@
             vidModal._current = item;
             vidTitle.textContent = item.title || '';
             vidMeta.textContent = item.speaker || '';
-            vidFrame.src = `https://www.youtube.com/embed/${encodeURIComponent(item.youtubeId)}?autoplay=1&rel=0`;
-            vidModal.classList.remove('hidden'); vidModal.classList.add('flex');
+
+            let src = '';
+
+            // 🔍 Détection du type de lien
+            if (item.link.includes('drive.google.com')) {
+                src = item.link.includes('/preview')
+                    ? item.link
+                    : item.link.replace('/view', '/preview');
+            } else if (item.link.includes('youtu')) {
+                const match = item.link.match(/(?:v=|\/embed\/|youtu\.be\/)([^"&?\/\s]+)/);
+                if (match && match[1]) {
+                    src = `https://www.youtube.com/embed/${match[1]}?autoplay=1&rel=0`;
+                }
+            } else {
+                alert('Format vidéo non reconnu.');
+                return;
+            }
+
+            vidFrame.src = src;
+            vidModal.classList.remove('hidden');
+            vidModal.classList.add('flex');
             document.documentElement.style.overflow = 'hidden';
-            setTimeout(() => {vidCloseBottom.classList.toggle('light', document.documentElement.classList.contains('light'))}, 60);
+            hideHeader();
+
+            // 🌗 Thème clair/sombre du bouton de fermeture
+            setTimeout(() => {
+                vidCloseBottom.classList.toggle(
+                    'light',
+                    document.documentElement.classList.contains('light')
+                );
+            }, 60);
+
+
+            function showCustomAlert(msg) {
+                let alertBox = document.getElementById("customAlert");
+                if (!alertBox) {
+                    alertBox = document.createElement("div");
+                    alertBox.id = "customAlert";
+                    document.body.appendChild(alertBox);
+                }
+                alertBox.innerHTML = msg;
+                alertBox.classList.add("show");
+                setTimeout(() => alertBox.classList.remove("show"), 3500);
+            }
+
+
+            // 🧩 Vérifie si YouTube bloque l’intégration (erreur 153)
+            if (item.link.includes('youtu')) {
+                const check = setTimeout(() => {
+                    showCustomAlert(
+                        "⚠️ Cette vidéo ne peut pas être lue ici.<br>Ouverture directe sur YouTube..."
+                    );
+                    closeVidModal();
+                    window.open(item.link, "_blank");
+                }, 5000);
+
+                vidFrame.onload = () => clearTimeout(check);
+            }
         }
+
+
+
         function closeVidModal() {
             vidModal.classList.add('hidden'); vidModal.classList.remove('flex');
             vidFrame.src = '';
@@ -1471,13 +1568,32 @@
         }
         vidCloseTop.addEventListener('click', closeVidModal);
         vidCloseBottom.addEventListener('click', closeVidModal);
+
         vidDownload.addEventListener('click', async () => {
             if (!vidModal._current) return alert('Aucune vidéo sélectionnée.');
-            const id = vidModal._current.youtubeId;
-            if (!id) return alert('Aucun ID vidéo disponible.');
-            try {await navigator.clipboard.writeText('https://www.youtube.com/watch?v=' + id); alert('Lien YouTube copié (utilise un outil tiers pour télécharger).');}
-            catch (e) {alert('Voici le lien: https://www.youtube.com/watch?v=' + id);}
+            const link = vidModal._current.link;
+            if (!link) return alert('Aucun lien disponible.');
+
+            if (link.includes('drive.google.com')) {
+                // Téléchargement direct depuis Drive
+                const match = link.match(/\/file\/d\/([^\/]+)\//);
+                const id = match ? match[1] : null;
+                const direct = id
+                    ? `https://drive.google.com/uc?export=download&id=${id}`
+                    : link;
+                window.open(direct, '_blank');
+            } else if (link.includes('youtu')) {
+                // Copie le lien YouTube
+                try {
+                    await navigator.clipboard.writeText(link);
+                    alert('🔗 Lien YouTube copié. Ouvre-le dans ton navigateur pour télécharger.');
+                } catch {
+                    alert('Voici le lien : ' + link);
+                }
+            }
         });
+
+
         vidModal.addEventListener('click', (e) => {if (e.target === vidModal) closeVidModal();});
 
         /* helper to find item by preview (if needed) */
@@ -1618,4 +1734,3 @@
 </body>
 
 </html>
-
