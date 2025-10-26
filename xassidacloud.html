@@ -828,6 +828,10 @@
                 padding: 5px 14px !important;
                 font-size: 0.85rem !important;
             }
+
+            footer {
+                text-align: center;
+            }
         }
 
 
@@ -1013,6 +1017,62 @@
 
         #customAlert.show {
             opacity: 1;
+        }
+
+        /* 💡 Style du bouton actif dans la barre de navigation */
+        .nav-active {
+            background-color: rgba(255, 165, 0, 0.15);
+            /* orange léger et transparent */
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-active {
+            background-color: rgba(255, 165, 0, 0.15);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            color: #ffb347 !important;
+        }
+
+        .page {
+            opacity: 0;
+            filter: blur(5px);
+            transition: all 0.5s ease;
+        }
+
+        .page.active {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        /* === Bouton mode clair/sombre transparent === */
+        #themeToggle {
+            background-color: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.8s ease;
+        }
+
+        /* survol : léger effet de surbrillance */
+        #themeToggle:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* mode clair : ajustement pour lisibilité */
+        html.light #themeToggle {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        html.light #themeToggle:hover {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* === Animation disparition du header === */
+        header {
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
         }
     </style>
 </head>
@@ -1231,6 +1291,34 @@
     </div>
 
     <script>
+
+        // 🧭 Gestion de la navigation + surbrillance du bouton actif
+        const navButtons = document.querySelectorAll('[data-nav]');
+
+        function updateActiveNav(currentPage) {
+            navButtons.forEach(btn => {
+                if (btn.dataset.nav === currentPage) {
+                    btn.classList.add('nav-active');
+                } else {
+                    btn.classList.remove('nav-active');
+                }
+            });
+        }
+
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = btn.dataset.nav;
+                showPage(page);
+                updateActiveNav(page); // 🟧 met à jour le bouton actif
+                document.getElementById('mobileNav').classList.add('hidden');
+            });
+        });
+
+        // 🔁 Quand on recharge la page avec un # (ex: #videos)
+        const currentHash = location.hash.replace('#', '') || 'home';
+        updateActiveNav(currentHash);
+
+
         /* ======================
            Data (Drive links & YouTube IDs you provided)
            ====================== */
@@ -1748,23 +1836,16 @@
             },
 
             {
-                id: 'v62',
+                id: 'v61',
                 title: 'Saani ilaahi',
                 speaker: 'Kourel 3 Salihina',
                 tag: 'Xassida',
                 link: 'https://youtu.be/0kDcjPqg2M8?si=81PhV3CdAFlvyyQW/preview'
             },
 
-             {
-                id: 'v62',
-                title: 'Radiass Dialibatoul Marakhib',
-                speaker: 'Serigne Mbaye Ndiaye Khassida',
-                tag: 'Xassida',
-                link: 'https://https://youtu.be/waOX3QNsCfE?si=A6vxUGxvofPYQ4jm/preview'
-            }
-
 
         ];
+
 
 
         // Trie les vidéos par ordre alphabétique du titre
@@ -1814,10 +1895,19 @@
             videos: document.getElementById('page-videos')
         };
         function showPage(name) {
-            Object.values(pages).forEach(p => p.classList.add('hidden'));
-            if (pages[name]) pages[name].classList.remove('hidden');
+            Object.entries(pages).forEach(([key, el]) => {
+                if (key === name) {
+                    el.classList.remove('hidden');
+                    requestAnimationFrame(() => el.classList.add('active'));
+                } else {
+                    el.classList.remove('active');
+                    setTimeout(() => el.classList.add('hidden'), 400);
+                }
+            });
             history.replaceState(null, '', '#' + name);
+            updateActiveNav(name);
         }
+
 
         /* nav */
         document.querySelectorAll('[data-nav]').forEach(btn => btn.addEventListener('click', e => {
@@ -2181,6 +2271,10 @@
         // Cible ton header
         const header = document.querySelector("header");
 
+        // Ajout de la transition fluide pour la disparition du header
+        header.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+
+
         // Fonction pour cacher la barre
         function hideHeader() {
             header.classList.add("hidden");
@@ -2219,5 +2313,3 @@
 </body>
 
 </html>
-
-
