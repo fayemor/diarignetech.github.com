@@ -1759,6 +1759,8 @@
         ];
 
 
+        // Trie les vidéos par ordre alphabétique du titre
+        VIDEOS.sort((a, b) => a.title.localeCompare(b.title, 'fr', {sensitivity: 'base'}));
 
         /* ======================
            Internal registry (no visible IDs)
@@ -2209,3 +2211,4 @@
 </body>
 
 </html>
+
