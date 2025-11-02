@@ -1085,6 +1085,87 @@
             background-color: rgba(227, 118, 71, 0.895);
             /* un peu plus foncé au survol */
         }
+
+        /* --- FOND GLOBAL --- */
+        html,
+        body {
+            background: linear-gradient(180deg, #0c0f1a 0%, #141a2a 100%);
+            color: #e2e8f0;
+            transition: background 0.6s ease, color 0.6s ease;
+        }
+
+        /* --- NAVBAR GLASS --- */
+        header {
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.4s ease;
+        }
+
+        header.light {
+            background: rgba(255, 255, 255, 0.6);
+            color: #1e293b;
+        }
+
+        /* --- BOUTONS --- */
+        button,
+        .btn-amber {
+            background: linear-gradient(90deg, #f7931e, #ffb84d);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
+        }
+
+        /* --- LIENS / HOVER --- */
+        a {
+            color: #ffb84d;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #f7931e;
+        }
+
+        /* --- CARTES --- */
+        article {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        article:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- PAGE TRANSITIONS --- */
+        .page {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- MODE CLAIR --- */
+        html.light {
+            background: linear-gradient(180deg, #f8f9fc 0%, #eceef3 100%);
+            color: #1e293b;
+        }
+
+        html.light header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 
@@ -1177,8 +1258,9 @@
                             class="px-4 py-2 rounded-md bg-amber-600 text-black font-bold">Explorer Xassidas</button>
                         <button data-nav="livres"
                             class="px-4 py-2 rounded-md border border-amber-600 text-amber-200">Explorer Livres</button>
-                        <button data-nav="videos" class="px-4 py-2 rounded-md bg-white/5 text-white">Kourels &
-                            Conferences</button>
+                        <button data-nav="videos" class="px-4 py-2 rounded-md bg-white/5 text-white">Prestation Kourels
+                            &
+                            Waxtaan</button>
                     </div>
                 </div>
             </div>
@@ -1186,17 +1268,19 @@
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="rounded-xl p-4 glass">
                     <h3 class="font-bold text-amber-300">Lecture intégrée</h3>
-                    <p class="text-sm mt-2 text-slate-300">Ouvre les PDF/Drive dans une modale pour lire sans quitter le
+                    <p class="text-sm mt-2 text-slate-300">Ouvre les Xassidas et livres dans une modale pour lire sans
+                        quitter le
                         site.</p>
                 </div>
                 <div class="rounded-xl p-4 glass">
                     <h3 class="font-bold text-amber-300">Téléchargement</h3>
-                    <p class="text-sm mt-2 text-slate-300">Téléchargement direct dans le site (si le Drive le permet).
+                    <p class="text-sm mt-2 text-slate-300">Téléchargement direct dans le site.
                     </p>
                 </div>
                 <div class="rounded-xl p-4 glass">
                     <h3 class="font-bold text-amber-300">Vidéos intégrées</h3>
-                    <p class="text-sm mt-2 text-slate-300">Regarde des vidéos YouTube directement dans une modale.</p>
+                    <p class="text-sm mt-2 text-slate-300">Regarde des vidéos YouTube et shorts directement dans une
+                        modale.</p>
                 </div>
             </div>
         </section>
@@ -1253,8 +1337,7 @@
         </section>
 
         <footer class="py-8 text-center text-sm text-slate-400">
-            © <span id="year"></span> Xassida Cloud — Usage éducatif • Développé par Mor Faye
-        </footer>
+            © Novembre <span id="year"> </span> - Xassida Cloud -Dévellopé avec ♥ par Mor FAYE</footer>
     </main>
 
     <!-- Document modal -->
@@ -1959,7 +2042,7 @@
 
             {
                 id: '115',
-                title: 'FIri_Wasful_muriid_shifaatu_shaadiqil_muriid_wolof-fr',
+                title: 'FIri_Wasful_muriid_shifaatu shaadiqil_muriid wf-fr',
                 author: 'Cheikh Ahmadou Bamba',
                 driveLink: 'https://drive.google.com/file/d/1hoP4McaFrqGeEmMQnUAvo2Ig9xaqhIgV/view?usp=drive_link'
             },
@@ -4203,7 +4286,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1BGlSuUU02EJUJN6OL3Q_Dx5mZpi_WXCh/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1BGlSuUU02EJUJN6OL3Q_Dx5mZpi_WXCh/view?usp=drive_link/preview'
             },
 
             {
@@ -4211,7 +4294,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1DC9fiIyQs-8AgR93m0Fy9TJEqcpZAH4o/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1DC9fiIyQs-8AgR93m0Fy9TJEqcpZAH4o/view?usp=drive_link/preview'
             },
 
             {
@@ -4219,7 +4302,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1k7h_p9wJXCBWfBZCHGeQKXUThtUFjh58/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1k7h_p9wJXCBWfBZCHGeQKXUThtUFjh58/view?usp=drive_link/preview'
             },
 
             {
@@ -4227,7 +4310,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1_cYWZDt6pGOvZnr2WkyX2Ty_G6Z2u-Ug/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1_cYWZDt6pGOvZnr2WkyX2Ty_G6Z2u-Ug/view?usp=drive_link/preview'
             },
 
             {
@@ -4235,7 +4318,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1yVGSvxeSzeQLhzO1MR6ofU4qr2k2a5S3/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1yVGSvxeSzeQLhzO1MR6ofU4qr2k2a5S3/view?usp=drive_link/preview'
             },
 
             {
@@ -4243,7 +4326,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1TVlhstqapzQlD_aLwdtURBOAKsjMXZZE/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1TVlhstqapzQlD_aLwdtURBOAKsjMXZZE/view?usp=drive_link/preview'
             },
 
             {
@@ -4251,7 +4334,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1_HLZX9a_kri7LMlGTrUkg-sLAk_XLyTD/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1_HLZX9a_kri7LMlGTrUkg-sLAk_XLyTD/view?usp=drive_link/preview'
             },
 
             {
@@ -4259,7 +4342,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1nRn7dVXDXgja25wU0Od5FBX9Y1ARx2Oe/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1nRn7dVXDXgja25wU0Od5FBX9Y1ARx2Oe/view?usp=drive_link/preview'
             },
 
             {
@@ -4267,7 +4350,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/17vgW-m1OIwMknaSh-dFVua4pKComonel/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/17vgW-m1OIwMknaSh-dFVua4pKComonel/view?usp=drive_link/preview'
             },
 
             {
@@ -4275,7 +4358,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1AS9cq_r7RDuEEotc66M1S9AEYu2o5aD_/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1AS9cq_r7RDuEEotc66M1S9AEYu2o5aD_/view?usp=drive_link/preview'
             },
 
             {
@@ -4283,7 +4366,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1-z10K3CBQv1493dkFpY98pTiG18gx1aq/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1-z10K3CBQv1493dkFpY98pTiG18gx1aq/view?usp=drive_link/preview'
             },
 
             {
@@ -4291,7 +4374,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1w0JIe9bxiEdGeSCdbGHk5rhDtNQlDVJ6/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1w0JIe9bxiEdGeSCdbGHk5rhDtNQlDVJ6/view?usp=drive_link/preview'
             },
 
             {
@@ -4299,7 +4382,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1TMSu_vFFPzPbRwwEFVPryTm7CMFCxrUE/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1TMSu_vFFPzPbRwwEFVPryTm7CMFCxrUE/view?usp=drive_link/preview'
             },
 
             {
@@ -4307,7 +4390,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/16dKyhUvubVdlLGwYUJrY7kWcCxENIJXU/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/16dKyhUvubVdlLGwYUJrY7kWcCxENIJXU/view?usp=drive_link/preview'
             },
 
             {
@@ -4315,7 +4398,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/16dKyhUvubVdlLGwYUJrY7kWcCxENIJXU/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/16dKyhUvubVdlLGwYUJrY7kWcCxENIJXU/view?usp=drive_link/preview'
             },
 
             {
@@ -4323,7 +4406,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1xpHl2gQgBGlt1geEpAyPjraHkPaCbmXm/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1xpHl2gQgBGlt1geEpAyPjraHkPaCbmXm/view?usp=drive_link/preview'
             },
 
 
@@ -4332,7 +4415,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1qLkikxzQCnH7Hoy3cPpPqv59qZFMn1EK/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1qLkikxzQCnH7Hoy3cPpPqv59qZFMn1EK/view?usp=drive_link/preview'
             },
 
 
@@ -4341,7 +4424,7 @@
                 title: 'Short',
                 speaker: 'Xassida',
                 tag: 'Xassida',
-                link: 'https://drive.google.com/file/d/1b1RwIGGwJL2Hry-LjtteXF0fQkrcSnXj/view?usp=drive_link'
+                link: 'https://drive.google.com/file/d/1b1RwIGGwJL2Hry-LjtteXF0fQkrcSnXj/view?usp=drive_link/preview'
             },
 
 
