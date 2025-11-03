@@ -842,6 +842,7 @@
             justify-content: center;
             gap: 0.25rem;
             padding: 0.1rem 0.1rem;
+            border-radius: 15px;
             font-size: 0.2rem;
             line-height: 0.5;
         }
@@ -1169,6 +1170,50 @@
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
         }
+
+        /* ✅ Footer global */
+        .app-footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 0.6rem 0.5rem;
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            color: #d1d5db;
+            line-height: 1.4;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ✨ Lien mail cliquable */
+        .app-footer .footer-mail {
+            color: #f59e0b;
+            /* orange */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .app-footer .footer-mail:hover {
+            color: #fbbf24;
+            /* jaune clair au survol */
+        }
+
+        /* 📱 Mobile : bien centré et espacé du contenu */
+        @media (max-width: 640px) {
+            .app-footer {
+                font-size: 0.8rem;
+                padding: 0.8rem 0.4rem;
+                line-height: 1.3;
+                position: relative;
+            }
+
+            .app-footer p {
+                margin: 0.25rem 0;
+            }
+        }
     </style>
 </head>
 
@@ -1344,18 +1389,16 @@
             </div>
         </section>
 
-        <footer
-            class="text-center py-2 mt-auto fixed bottom-0 left-0 right-0 bg-black/30 backdrop-blur-sm text-sm text-slate-300">
-            <p class="m-0">
-                © <span id="year"></span> Xassida Cloud — Tous droits réservés.
-            </p>
-            <p class="mt-1">
+        <footer class="app-footer">
+            <p>© <span id="year"></span> Xassida Cloud — Développé par Mor Faye</p>
+            <p>
                 Contact :
-                <a href="mailto:xassidacloud@gmail.com" class="text-amber-500 hover:text-amber-400 transition">
+                <a href="mailto:xassidacloud@gmail.com" class="footer-mail">
                     xassidacloud@gmail.com
                 </a>
             </p>
         </footer>
+
 
 
     </main>
